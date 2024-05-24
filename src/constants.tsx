@@ -4,9 +4,14 @@ export const IS_DEV_MODE = false
 
 export const assetArr: AssetType[] = [
   {
+    name: 'chairModel',
+    type: 'model',
+    path: 'models/chair_o.glb',
+  },
+  {
     name: 'characterModel',
     type: 'model',
-    path: 'models/character/scene.gltf',
+    path: 'models/character_with_environment_o.glb',
   },
 ]
 

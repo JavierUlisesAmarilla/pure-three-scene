@@ -11,11 +11,11 @@ export class Model {
   animController?: AnimController
   moveState!: string
 
-  constructor() {
+  constructor(model: GLTF) {
     const experience = new Experience()
     this.scene = experience.scene
     this.time = experience.time
-    this.model = experience.loaders?.items.characterModel
+    this.model = model
     this.animMixer = new AnimationMixer(this.model.scene)
     this.initModel()
     this.initAnim()
@@ -40,7 +40,7 @@ export class Model {
       animActions[anim.name] = this.animMixer.clipAction(anim)
     })
     this.animController = new AnimController(this.animMixer, animActions)
-    this.animController.playNewActionOnly('Idle')
+    this.animController.playNewActionOnly(Object.keys(animActions)[0])
   }
 
   updateAnim(animName: string) {

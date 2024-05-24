@@ -1,13 +1,15 @@
+import {Experience} from '../Experience'
 import {Model} from './Model'
 
 export class World {
-  model: Model
+  chairModel: Model
 
   constructor() {
-    this.model = new Model()
+    const experience = new Experience()
+    this.chairModel = new Model(experience.loaders?.items.chairModel)
   }
 
   update() {
-    this.model.update()
+    this.chairModel.update()
   }
 }
