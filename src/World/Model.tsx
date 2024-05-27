@@ -15,6 +15,12 @@ export class Model {
     const experience = new Experience()
     this.scene = experience.scene
     this.time = experience.time
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO
+    model.scene.traverse((object3d: any) => {
+      if (object3d.isSkinnedMesh) {
+        object3d.frustumCulled = false
+      }
+    })
     this.model = model
     this.animMixer = new AnimationMixer(this.model.scene)
     this.initModel()
