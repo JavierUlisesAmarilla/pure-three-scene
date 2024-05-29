@@ -1,4 +1,4 @@
-import {AnimationAction, AnimationMixer, Object3D} from 'three'
+import {AnimationAction, AnimationMixer, Object3D, SkinnedMesh} from 'three'
 import {GLTF} from 'three/examples/jsm/loaders/GLTFLoader'
 import {Experience} from '../Experience'
 import AnimController from '../Utils/AnimController'
@@ -15,10 +15,9 @@ export class Model {
     const experience = new Experience()
     this.scene = experience.scene
     this.time = experience.time
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO
-    model.scene.traverse((object3d: any) => {
-      if (object3d.isSkinnedMesh) {
-        object3d.frustumCulled = false
+    model.scene.traverse((child) => {
+      if (child instanceof SkinnedMesh) {
+        child.frustumCulled = false
       }
     })
     this.model = model
